@@ -1,5 +1,8 @@
 extends Node2D	
 
+var air = 1.
+var jai = 1.
+var bai = 1.
 var axisx = true
 var axisy = false
 var islooped = true
@@ -15,6 +18,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 
+	$player.modulate = Color(air, jai, bai)
+
 	if islooped == true:
 		if  $player.position.y >= height/10:
 			$player.position.y = $player.position.y -2
@@ -29,18 +34,30 @@ func _process(_delta):
 		# Close to the edge
 		if  $player.position.x >= width/18*17:
 			axisx = false
+			air = randf()
+			jai = randf()
+			bai = randf()
 			print("go left")
 		if  $player.position.x <= width/18:
 			axisx = true
+			air = randf()
+			jai = randf()
+			bai = randf()
 			print("go right")
 		if  $player.position.y >= height/10*9:
 			axisy = false
+			air = randf()
+			jai = randf()
+			bai = randf()
 			print("go up")
 		if  $player.position.y <= height/10:
 			axisy = true
+			air = randf()
+			jai = randf()
+			bai = randf()
 			print("go down")
-		
-		
+
+
 		if  axisx == true:
 			$player.position.x = $player.position.x +2
 		if  axisx == false:
