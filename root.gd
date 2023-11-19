@@ -1,8 +1,8 @@
 extends Node2D	
 
-var air = 1.
-var jai = 1.
-var bai = 1.
+var ash = randi_range(0,360)
+var ais = 100
+var vai = 100
 var axisx = true
 var axisy = false
 var islooped = true
@@ -18,8 +18,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 
-	$player.modulate = Color(air, jai, bai)
-
+	$player.modulate = Color ("002aff")
 	if islooped == true:
 		if  $player.position.y >= height/10:
 			$player.position.y = $player.position.y -2
@@ -29,40 +28,73 @@ func _process(_delta):
 		if  $player.position.x >= width/18*17:
 			islooped = false
 			print("islooped is now false")
-
-	if islooped == false:
-		# Close to the edge
-		if  $player.position.x >= width/18*17:
-			axisx = false
-			air = randf()
-			jai = randf()
-			bai = randf()
-			print("go left")
-		if  $player.position.x <= width/18:
-			axisx = true
-			air = randf()
-			jai = randf()
-			bai = randf()
-			print("go right")
-		if  $player.position.y >= height/10*9:
-			axisy = false
-			air = randf()
-			jai = randf()
-			bai = randf()
-			print("go up")
-		if  $player.position.y <= height/10:
-			axisy = true
-			air = randf()
-			jai = randf()
-			bai = randf()
-			print("go down")
-
-
-		if  axisx == true:
-			$player.position.x = $player.position.x +2
-		if  axisx == false:
-			$player.position.x = $player.position.x -2
-		if  axisy == true:
-			$player.position.y = $player.position.y +2
-		if  axisy == false:
-			$player.position.y = $player.position.y -2
+#
+#	if islooped == false:
+#		# Close to the edge
+#		if  $player.position.x >= width/18*17:
+#			axisx = false
+#				air = globalcolor3[0]
+#				jai = globalcolor3[1]
+#				bai = globalcolor3[2]
+#			print("go left")
+#		if  $player.position.x <= width/18:
+#			axisx = true
+#			randomcolorvar = randi_range(1,3)
+#			print(randomcolorvar)
+#			if randomcolorvar == 1:
+#				air = globalcolor1[0]
+#				jai = globalcolor1[1]
+#				bai = globalcolor1[2]
+#			if randomcolorvar == 2:
+#				air = globalcolor2[0]
+#				jai = globalcolor2[1]
+#				bai = globalcolor2[2]
+#			if randomcolorvar == 3:
+#				air = globalcolor3[0]
+#				jai = globalcolor3[1]
+#				bai = globalcolor3[2]
+#			print("go right")
+#		if  $player.position.y >= height/10*9:
+#			axisy = false
+#			randomcolorvar = randi_range(1,3)
+#			print(randomcolorvar)
+#			if randomcolorvar == 1:
+#				air = globalcolor1[0]
+#				jai = globalcolor1[1]
+#				bai = globalcolor1[2]
+#			if randomcolorvar == 2:
+#				air = globalcolor2[0]
+#				jai = globalcolor2[1]
+#				bai = globalcolor2[2]
+#			if randomcolorvar == 3:
+#				air = globalcolor3[0]
+#				jai = globalcolor3[1]
+#				bai = globalcolor3[2]
+#			print("go up")
+#		if  $player.position.y <= height/10:
+#			axisy = true
+#			randomcolorvar = randi_range(1,3)
+#			print(randomcolorvar)
+#			if randomcolorvar == 1:
+#				air = globalcolor1[0]
+#				jai = globalcolor1[1]
+#				bai = globalcolor1[2]
+#			if randomcolorvar == 2:
+#				air = globalcolor2[0]
+#				jai = globalcolor2[1]
+#				bai = globalcolor2[2]
+#			if randomcolorvar == 3:
+#				air = globalcolor3[0]
+#				jai = globalcolor3[1]
+#				bai = globalcolor3[2]
+#			print("go down")
+#
+#
+#		if  axisx == true:
+#			$player.position.x = $player.position.x +2
+#		if  axisx == false:
+#			$player.position.x = $player.position.x -2
+#		if  axisy == true:
+#			$player.position.y = $player.position.y +2
+#		if  axisy == false:
+#			$player.position.y = $player.position.y -2
