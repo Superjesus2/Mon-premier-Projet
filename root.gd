@@ -37,17 +37,26 @@ var speedy = 0
 
 func _ready():
 	
-	#VARIABLES DES PLAYERS
+	
+		#VARIABLES DES PLAYERS
 	var players_edgeleft = edgeleft + playerone_size_x
 	var players_edgeright = edgeright - playerone_size_x
 	var players_edgetop = edgetop + (playerone_size_y / 2)
 	var players_edgebottom = edgebottom - (playerone_size_y / 2)
 	
+	print(players_edgeleft)
+	print(players_edgeright)
+	print(players_edgetop)
+	print(players_edgebottom)
+	print(edgeleft)
+	print(edgeright)
+	print(edgetop)
+	print(edgebottom)
 	
-	playerone.position.x = players_edgeleft
-	playerone.position.y = players_edgetop
-	playertwo.position.x = players_edgeright
-	playertwo.position.y = players_edgebottom
+	playerone.position.x = edgeleft
+	playerone.position.y = edgetop
+	playertwo.position.x = edgeright
+	playertwo.position.y = edgebottom
 
 func _process(_delta):
 	pass
@@ -72,10 +81,10 @@ func _process(_delta):
 #	$rectangle.position.x += speedx * delta
 #	$rectangle.position.y += speedy * delta
 	
-#func _input(ev):
-#	if ev is InputEventKey:
-#		if ev.physical_keycode == KEY_SPACE and ev.is_pressed() and not ev.is_echo():
-#			SPEED = 450 if SPEED == 300 else 300
+func _input(ev):
+	if ev is InputEventKey:
+		if ev.physical_keycode == KEY_SPACE and ev.is_pressed() and not ev.is_echo():
+			SPEED = 450 if SPEED == 300 else 300
 	
 #	elapsedtime = elapsedtime+delta
 #	if elapsedtime >= 1 and not coucouprinted:
