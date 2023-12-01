@@ -13,9 +13,10 @@ var edgeleft = (width/100)*2
 var edgeright = width-edgeleft
 var edgetop = (height/100)*2
 var edgebottom = height-edgetop
+var startimer = 0
 
 	# VARIABLES DE LA BALLE
-var SPEEDMAX = 600  #pixels par seconde
+var SPEEDMAX = 400  #pixels par seconde
 var speedx = 0
 var speedy = 0
 
@@ -25,7 +26,9 @@ var speedy = 0
 @onready var playertwo = $playertwo
 var speed1 = 0
 var speed2 = 0
-var playerSPEEDMAX = 6
+var playerSPEEDMAX = 8
+var playerone_score = 0
+var playertwo_score = 0
 
 	# Variables player One
 @onready var playerone_size_y = playerone.size.y
@@ -36,8 +39,6 @@ var playerone_cango_down = true
 	# Variables player Two
 @onready var playertwo_size_y = playerone_size_y
 @onready var playertwo_size_x = playerone_size_x
-var playertwo_cango_up = true
-var playertwo_cango_down = true
 
 
 
@@ -57,53 +58,70 @@ func _ready():
 		# ON START
 	playerone.position.x = edgeleft
 	playerone.position.y = edgetop
-	playertwo.position.x = edgeright
+	playertwo.position.x = edgeright - playertwo_size_x
 	playertwo.position.y = edgebottom - playertwo_size_y
+		#le anchorpoint du sprite est bloqué en top left ^
 	$theball.position.x = width/2
 	$theball.position.y = height/2
+	
+
 
 func _process(_delta):
 
+		# GAMU SUTARUTO
+	startimer = startimer + _delta
+	if startimer >= 3 :
+		speedx = 1
+		speedy = 1
+	else :
+		speedx = 0
+		speedy = 0
+
 		# PLAYERS EDGES
-		# meh...
-	if playerone.position.y >= (edgebottom - playerone_size_y):
-		playerone_cango_down = false
-	if playerone.position.y <= edgetop :
-		playerone_cango_up = false
-	if playerone.position.y < (edgebottom - playerone_size_y):
-		playerone_cango_down = true
-	if playerone.position.y > edgetop :
-		playerone_cango_up = true
-	
-	print(playerone.position.y)
-	
-		# VITESSE DES PLAYERS 
-		# IL FAUT SE DEBARASSER DU ELSE (TERNARY INCOMPATIBILITY)
+	if playerone.position.y < edgetop :
+		playerone.position.y = edgetop
+	if playerone.position.y > (edgebottom - playerone_size_y) :
+		playerone.position.y = (edgebottom - playerone_size_y)
+	if playertwo.position.y < edgetop :
+		playertwo.position.y = edgetop
+	if playertwo.position.y > (edgebottom - playertwo_size_y) :
+		playertwo.position.y = (edgebottom - playertwo_size_y)
+
+
+		# MOUVEMENTS DES PLAYERS 
 	if not Input.is_physical_key_pressed(KEY_W) and not Input.is_physical_key_pressed(KEY_S) :
 		speed1 = 0
-	speed1 += .5 if Input.is_physical_key_pressed(KEY_S) and speed1 <= playerSPEEDMAX else 0
-	speed1 += -.5 if Input.is_physical_key_pressed(KEY_W) and speed1 <= playerSPEEDMAX else 0
-
-
-	if not Input.is_physical_key_pressed(KEY_O) and not Input.is_physical_key_pressed(KEY_L):
+	if Input.is_physical_key_pressed(KEY_S) and speed1 <= playerSPEEDMAX :
+		speed1 += .5
+	if Input.is_physical_key_pressed(KEY_W) and speed1 >= -playerSPEEDMAX :
+		speed1 += -.5  
+	
+	if not Input.is_physical_key_pressed(KEY_O) and not Input.is_physical_key_pressed(KEY_L) :
 		speed2 = 0
-	if playertwo.position.y <= edgebottom and playertwo.position.y >= edgetop:
-		speed2 += -.5 if Input.is_physical_key_pressed(KEY_O) and speed2 <= playerSPEEDMAX else 0
-		speed2 += .5 if Input.is_physical_key_pressed(KEY_L) and speed2 <= playerSPEEDMAX else 0
-
-
+	if Input.is_physical_key_pressed(KEY_L) and speed2 <= playerSPEEDMAX :
+		speed2 += .5
+	if Input.is_physical_key_pressed(KEY_O) and speed2 >= -playerSPEEDMAX :
+		speed2 += -.5  
+	
 	playerone.position.y += speed1
 	playertwo.position.y += speed2
 
 
 		# MOUVEMENTS de LA BALLE
-	
 	var deplacement = Vector2(speedx, speedy)
 	deplacement = deplacement.normalized()
 	$theball.position += deplacement * _delta * SPEEDMAX
-#	$theball.position.x += speedx * _delta
-#	$theball.position.y += speedy * _delta
-
-func _input(ev):
-	pass
 	
+	if $theball.position.x < 0 :
+		playerone_score += 1
+		startimer = 0
+		$theball.position.x = width/2
+		$theball.position.y = height/2
+	if $theball.position.x > width :
+		playertwo_score += 1
+		startimer = 0
+		$theball.position.x = width/2
+		$theball.position.y = height/2
+
+func _input(_ev):
+	pass
