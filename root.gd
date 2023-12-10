@@ -16,7 +16,7 @@ var edgebottom = height-edgetop
 var startimer = 0
 
 	# VARIABLES DE LA BALLE
-var SPEEDMAX = 400  #pixels par seconde
+var SPEEDMAX = 500  #pixels par seconde
 var speedx = 0
 var speedy = 0
 
@@ -26,15 +26,15 @@ var speedy = 0
 @onready var playertwo = $playertwo
 var speed1 = 0
 var speed2 = 0
-var playerSPEEDMAX = 8
+var playerSPEEDMAX = 9
 var playerone_score = 0
 var playertwo_score = 0
 
 	# Variables player One
 @onready var playerone_size_y = playerone.size.y
 @onready var playerone_size_x = playerone.size.x
-var playerone_cango_up = true
-var playerone_cango_down = true
+#var playerone_cango_up = true
+#var playerone_cango_down = true
 
 	# Variables player Two
 @onready var playertwo_size_y = playerone_size_y
@@ -64,18 +64,19 @@ func _ready():
 	$theball.position.x = width/2
 	$theball.position.y = height/2
 	
+	$playerone_score.position.x = width/2 - playerone_size_y
+	$playertwo_score.position.x = width/2 + playertwo_size_y
+	$playerone_score.position.y = edgetop
+	$playertwo_score.position.y = edgetop
 
 
 func _process(_delta):
 
 		# GAMU SUTARUTO
 	startimer = startimer + _delta
-	if startimer >= 3 :
-		speedx = 1
-		speedy = 1
-	else :
-		speedx = 0
-		speedy = 0
+	if startimer >= 3 and startimer <= 4 :
+		speedx = -1
+		speedy = -1
 
 		# PLAYERS EDGES
 	if playerone.position.y < edgetop :
@@ -94,7 +95,7 @@ func _process(_delta):
 	if Input.is_physical_key_pressed(KEY_S) and speed1 <= playerSPEEDMAX :
 		speed1 += .5
 	if Input.is_physical_key_pressed(KEY_W) and speed1 >= -playerSPEEDMAX :
-		speed1 += -.5  
+		speed1 += -.5
 	
 	if not Input.is_physical_key_pressed(KEY_O) and not Input.is_physical_key_pressed(KEY_L) :
 		speed2 = 0
@@ -111,17 +112,36 @@ func _process(_delta):
 	var deplacement = Vector2(speedx, speedy)
 	deplacement = deplacement.normalized()
 	$theball.position += deplacement * _delta * SPEEDMAX
+	if $theball.position.y <= edgetop :
+		speedy = 1
+	elif $theball.position.y >= edgebottom :
+		speedy = -1
 	
+	if $theball.position.x <= playerone.position.x + playerone_size_x  :
+		if $theball.position.y >= playerone.position.y and $theball.position.y <= (playerone.position.y + playerone_size_y) :
+			speedx = 1
+	if $theball.position.x >= playertwo.position.x - playertwo_size_x :
+		if $theball.position.y >= playertwo.position.y and $theball.position.y <= (playertwo.position.y + playertwo_size_y) :
+			speedx = -1
+
+		# SCORING DE LA BALLE
 	if $theball.position.x < 0 :
-		playerone_score += 1
-		startimer = 0
-		$theball.position.x = width/2
-		$theball.position.y = height/2
-	if $theball.position.x > width :
 		playertwo_score += 1
 		startimer = 0
 		$theball.position.x = width/2
 		$theball.position.y = height/2
+		speedx = 0
+		speedy = 0
+	if $theball.position.x > width :
+		playerone_score += 1
+		startimer = 0
+		$theball.position.x = width/2
+		$theball.position.y = height/2
+		speedx = 0
+		speedy = 0
+
+	$playerone_score.text = str(playerone_score)
+	$playertwo_score.text = str(playertwo_score)
 
 func _input(_ev):
 	pass
