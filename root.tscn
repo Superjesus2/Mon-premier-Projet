@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://b5ndj5mgbbkux"]
+[gd_scene load_steps=2 format=3 uid="uid://b5ndj5mgbbkux"]
+
+[ext_resource type="Script" path="res://root.gd" id="1_x5ypc"]
 
 [node name="root" type="Node2D"]
+script = ExtResource("1_x5ypc")
+
+[node name="spawn_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="spawn_button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "SPAWN 10 BALLS"
+
+[node name="balls" type="Node2D" parent="."]
