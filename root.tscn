@@ -6,11 +6,26 @@
 script = ExtResource("1_x5ypc")
 
 [node name="spawn_timer" type="Timer" parent="."]
+unique_name_in_owner = true
 autostart = true
 
-[node name="spawn_button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "SPAWN 10 BALLS"
-
 [node name="balls" type="Node2D" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="spawn_10_balls" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SPAWN randomly"
+
+[node name="spawn_spread_angle" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SPAWN, spreading angle"
+
+[node name="spawn_line_up" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SPAWN, in a line"
