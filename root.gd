@@ -7,12 +7,6 @@ func _ready():
 	$spawn_button.pressed.connect(spawn_10_balls)
 
 func spawn_ball_random_position():
-#	var ball = ball_scn.instantiate()
-#	ball.speed = 40
-#	ball.position = Vector2(randf_range(0,1280), randf_range(0,720))
-#	ball.angle = deg_to_rad(randf_range(0,360))
-#	$balls.add_child(ball)
-	
 	var pos = Vector2(randf_range(0,1280), randf_range(0,720))
 	var ang = deg_to_rad(randf_range(0,360))
 	spawn_ball(pos, ang)
