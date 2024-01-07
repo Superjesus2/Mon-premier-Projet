@@ -17,8 +17,8 @@ func _ready():
 	$%spawn_spread_angle.pressed.connect(spawn_spread_angle)
 	$%spawn_line_up.pressed.connect(spawn_in_line)
 
-func _on_mouse_button_pressed(button_id: int):
-	spawn_ball(mouse_position, 0, remap(button_id, 0,5, 0,1))
+func _on_mouse_button_pressed(quel_bouton: int):
+	spawn_ball(mouse_position, 0, remap(quel_bouton, 0,5, 0,1))
 
 func spawn_in_line():
 	var posx = 640
@@ -29,6 +29,7 @@ func spawn_in_line():
 	while balls_lined < 8 :
 		ang += deg_to_rad(45)
 		pos.x += 40
+		pos.y += 5
 		spawn_ball(pos, ang)
 		balls_lined += 1
 
@@ -67,13 +68,11 @@ func spawn_spread_angle():
 	var balls_to_spawn = randf_range(6,18)
 	var hue = remap(balls_to_spawn, 6, 18, 0, 1)     #HYPER PRATIQUE
 	while balls_spawned < balls_to_spawn:
+		await get_tree().create_timer(.05).timeout
 		ang += deg_to_rad(360) / balls_to_spawn
 		balls_spawned += 1
-		if balls_spawned % 3 == 0:
-			continue
-		if balls_spawned == 10:
-			break
 		spawn_ball(pos, ang, hue)
+
 
 #######
 
