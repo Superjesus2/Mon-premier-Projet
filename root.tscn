@@ -1,25 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://3xnxnmrewoo2"]
+[gd_scene load_steps=2 format=3 uid="uid://3xnxnmrewoo2"]
 
-[ext_resource type="Script" path="res://intro_array.gd" id="1_cqfuu"]
-[ext_resource type="Texture2D" uid="uid://bxx5gtd3dlhg" path="res://icon.svg" id="2_t73gn"]
+[ext_resource type="Script" path="res://flappy.gd" id="1_py521"]
 
 [node name="root" type="Node2D"]
 
-[node name="intro_array" type="Node2D" parent="."]
-script = ExtResource("1_cqfuu")
-palette = Array[Color]([Color(0, 0.105882, 0.568627, 1), Color(0.678431, 0.407843, 0.411765, 1), Color(0.878431, 0.713726, 0.286275, 1)])
-
-[node name="icon_container" type="Node2D" parent="intro_array"]
-unique_name_in_owner = true
-
-[node name="Icon" type="Sprite2D" parent="intro_array/icon_container"]
-position = Vector2(573, 267)
-texture = ExtResource("2_t73gn")
-
-[node name="Icon2" type="Sprite2D" parent="intro_array/icon_container"]
-position = Vector2(1009, 301)
-texture = ExtResource("2_t73gn")
-
-[node name="Icon3" type="Sprite2D" parent="intro_array/icon_container"]
-position = Vector2(668, 567)
-texture = ExtResource("2_t73gn")
+[node name="flappy" type="Node2D" parent="."]
+script = ExtResource("1_py521")
