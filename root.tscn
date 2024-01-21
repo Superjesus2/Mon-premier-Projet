@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://3xnxnmrewoo2"]
+[gd_scene load_steps=4 format=3 uid="uid://3xnxnmrewoo2"]
 
 [ext_resource type="Script" path="res://flappy.gd" id="1_py521"]
+[ext_resource type="PackedScene" uid="uid://cyd5y6q27ueo8" path="res://zebird.tscn" id="2_rdrje"]
+[ext_resource type="PackedScene" uid="uid://b38o5nqddconh" path="res://boxes.tscn" id="3_ba4vr"]
 
 [node name="root" type="Node2D"]
 
 [node name="flappy" type="Node2D" parent="."]
 script = ExtResource("1_py521")
+
+[node name="zebirds" parent="flappy" instance=ExtResource("2_rdrje")]
+
+[node name="zeworld" type="Node2D" parent="flappy"]
+
+[node name="gamu_sutaruto" type="Timer" parent="flappy"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="boxes" parent="." instance=ExtResource("3_ba4vr")]
+
+[node name="boxer" type="Node2D" parent="boxes"]

@@ -1,11 +1,19 @@
 extends Node2D
 
+@onready var zebird = preload("res://zebird.tscn")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	
+	gamu_sutaruto
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
+	pass
+
+func gamu_sutaruto():
+	await get_tree().create_timer(3).timeout
+	$zebirds.add_child(zebird.instantiate())
+
+func _input(_event):
 	pass

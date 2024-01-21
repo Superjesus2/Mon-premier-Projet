@@ -6,7 +6,6 @@
 script = ExtResource("1_1wb7a")
 
 [node name="spawn_timer" type="Timer" parent="."]
-unique_name_in_owner = true
 autostart = true
 
 [node name="balls" type="Node2D" parent="."]

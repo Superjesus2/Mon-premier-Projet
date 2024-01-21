@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b38o5nqddconh"]
+
+[ext_resource type="Script" path="res://boxes.gd" id="1_bfgda"]
+
+[node name="boxes" type="Node2D"]
+script = ExtResource("1_bfgda")
