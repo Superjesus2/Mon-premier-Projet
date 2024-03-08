@@ -26,8 +26,8 @@ func _on_button_pressed(i):
 		# retenir qu'on a appuyé sur cette boîte
 	checked_boxes.append(i)
 	
-
-
+		# afficher le nomlbre de boites cliquées
+	$boxes_checked.text = str(checked_boxes.size())
 
 		# game over ou pas game over ?
 	_check_whether_game_ended()
@@ -36,7 +36,8 @@ func _on_button_pressed(i):
 	for j in range(0,100):
 		boxes[j].disabled = true
 		for k in checked_boxes:
-			checked_boxes[k].theme_override_styles()
+#			checked_boxes[k].theme_override_styles()
+			pass
 	
 		# réactive les boutons appropriés
 	for j in range(0,100):

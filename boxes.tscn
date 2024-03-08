@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://b38o5nqddconh"]
+[gd_scene load_steps=6 format=3 uid="uid://b38o5nqddconh"]
 
 [ext_resource type="Script" path="res://boxes.gd" id="1_bfgda"]
 [ext_resource type="Theme" uid="uid://cm1al6cahi574" path="res://new_theme.tres" id="2_ayeug"]
+
+[sub_resource type="Theme" id="Theme_y6tds"]
+
+[sub_resource type="Theme" id="Theme_idw46"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l3js"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.313726, 0.121569, 0.317647, 1)
+border_blend = true
 
 [node name="boxes" type="CanvasLayer"]
 script = ExtResource("1_bfgda")
@@ -18,13 +30,55 @@ theme_override_constants/h_separation = 5
 columns = 10
 
 [node name="boxes_checked" type="Label" parent="."]
-offset_left = 1063.0
-offset_top = 72.0
-offset_right = 1103.0
-offset_bottom = 112.0
+offset_left = 1000.0
+offset_top = 169.0
+offset_right = 1040.0
+offset_bottom = 209.0
+theme = SubResource("Theme_y6tds")
+theme_override_colors/font_color = Color(0, 0.729412, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="label_score" type="Label" parent="."]
+offset_left = 940.0
+offset_top = 86.0
+offset_right = 1098.0
+offset_bottom = 166.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = SubResource("Theme_idw46")
+theme_override_colors/font_color = Color(0.541176, 0.823529, 0.819608, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.054902, 0.4, 0.858824)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 3
+theme_override_constants/line_spacing = 5
+theme_override_font_sizes/font_size = 50
+text = "SCORE"
+uppercase = true
 
 [node name="reset_button" type="Button" parent="."]
-offset_left = 1067.0
-offset_top = 536.0
-offset_right = 1148.0
-offset_bottom = 572.0
+offset_left = 940.0
+offset_top = 512.0
+offset_right = 1098.0
+offset_bottom = 569.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_1l3js")
+text = "RESET"
+
+[node name="start_button" type="Button" parent="."]
+offset_left = 940.0
+offset_top = 439.0
+offset_right = 1098.0
+offset_bottom = 496.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_1l3js")
+disabled = true
+text = "START
+"
