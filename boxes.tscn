@@ -1,13 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://b38o5nqddconh"]
+[gd_scene load_steps=3 format=3 uid="uid://b38o5nqddconh"]
 
 [ext_resource type="Script" path="res://boxes.gd" id="1_bfgda"]
+[ext_resource type="Theme" uid="uid://cm1al6cahi574" path="res://new_theme.tres" id="2_ayeug"]
 
 [node name="boxes" type="CanvasLayer"]
 script = ExtResource("1_bfgda")
 
 [node name="grid" type="GridContainer" parent="."]
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 853.0
-grow_vertical = 2
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 784.0
+offset_bottom = 715.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_ayeug")
+theme_override_constants/h_separation = 5
 columns = 10
+
+[node name="boxes_checked" type="Label" parent="."]
+offset_left = 1063.0
+offset_top = 72.0
+offset_right = 1103.0
+offset_bottom = 112.0
+
+[node name="reset_button" type="Button" parent="."]
+offset_left = 1067.0
+offset_top = 536.0
+offset_right = 1148.0
+offset_bottom = 572.0
