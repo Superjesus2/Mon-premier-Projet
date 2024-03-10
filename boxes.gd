@@ -2,8 +2,8 @@ extends CanvasLayer
 
 var boxes = []
 var checked_boxes = []
+var checkable_boxes = 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	for ii in range(0,100):
 		var button = Button.new()
@@ -19,30 +19,31 @@ func _ready():
 		#		var declenche_ce_bouton = func(): _on_button_pressed(i)
 		#		button.pressed.connect(declenche_ce_bouton)
 
-func _on_button_pressed(i):
+
+func _on_button_pressed(i_button):
 		# retenir qu'on a appuyé sur cette boîte
-	checked_boxes.append(i)
+	checked_boxes.append(i_button)
 
 		# afficher le nomlbre de boites cliquées
 	$checked_boxes_count.text = str(checked_boxes.size())
 
-		# game over ou pas game over ?
-	_check_whether_game_ended()
-	
 		# désactive tous les boutons
 	for j in range(0,100):
 		boxes[j].disabled = true
 		for k in checked_boxes:
 			$grid.get_child(k).text = str("x")
 			$grid.get_child(k).text = str("x")
+			
 	
 		# réactive les boutons appropriés
 		# puis game over si aucun bouton n'est réactivé
 	for j in range(0,100):
-		if can_press_on_j_after_pressing_on_i(i, j):
+		if can_press_on_j_after_pressing_on_i(i_button, j):
 			boxes[j].disabled = false
-			if j == 0 :
-				game_lost()
+			checkable_boxes += 1
+
+		# game over ou pas game over ?
+	_check_whether_game_ended()
 
 func can_press_on_j_after_pressing_on_i(i, ji):
 	var x_i = i % 10
@@ -54,7 +55,7 @@ func can_press_on_j_after_pressing_on_i(i, ji):
 #	var same_line_or_column = abs(x_ji-3) and abs(y_ji-3)
 #	var on_diagonal = abs(Vector2(x_ji-2,y_ji-2))
 #	return not_pressed and (same_line_or_column or on_diagonal)
-	
+
 			# DIAGONALES
 	if ji not in checked_boxes :
 		if x_ji == x_i - 2 and y_ji == y_i - 2 :
@@ -81,7 +82,7 @@ func can_press_on_j_after_pressing_on_i(i, ji):
 func _check_whether_game_ended():
 	if checked_boxes.size() == 100 :
 		game_won()
-	if can_press_on_j_after_pressing_on_i(0,0):
+	if checkable_boxes == 0 :
 		game_lost()
 
 func game_won() :
