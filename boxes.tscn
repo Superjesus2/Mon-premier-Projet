@@ -29,7 +29,7 @@ theme = ExtResource("2_ayeug")
 theme_override_constants/h_separation = 5
 columns = 10
 
-[node name="boxes_checked" type="Label" parent="."]
+[node name="checked_boxes_count" type="Label" parent="."]
 offset_left = 1000.0
 offset_top = 169.0
 offset_right = 1040.0

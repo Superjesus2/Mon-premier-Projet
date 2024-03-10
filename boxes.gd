@@ -8,8 +8,7 @@ func _ready():
 	for i in range(0,100):
 		var button = Button.new()
 		boxes.append(button)
-		button.text = "  "
-#		button.theme_override_styles/pressed
+
 		$grid.add_child(button)
 		button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER | Control.SIZE_EXPAND_FILL
 		button.size_flags_vertical = Control.SIZE_SHRINK_CENTER | Control.SIZE_EXPAND_FILL
@@ -25,9 +24,9 @@ func _ready():
 func _on_button_pressed(i):
 		# retenir qu'on a appuyé sur cette boîte
 	checked_boxes.append(i)
-	
+
 		# afficher le nomlbre de boites cliquées
-	$boxes_checked.text = str(checked_boxes.size())
+	$checked_boxes_count.text = str(checked_boxes.size())
 
 		# game over ou pas game over ?
 	_check_whether_game_ended()
@@ -36,15 +35,16 @@ func _on_button_pressed(i):
 	for j in range(0,100):
 		boxes[j].disabled = true
 		for k in checked_boxes:
-#			checked_boxes[k].theme_override_styles()
+			$grid.get_child(k).text = str("x")
 			pass
 	
 		# réactive les boutons appropriés
 	for j in range(0,100):
 		if can_press_on_j_after_pressing_on_i(i, j):
 			boxes[j].disabled = false
-#		if box_is_checked(i):
-#			pass
+			if $grid.get_children().size() == 0 :
+				print("gameover")
+				game_lost()
 
 	
 
@@ -53,6 +53,11 @@ func can_press_on_j_after_pressing_on_i(i, ji):
 	var y_i = (i - x_i)/10
 	var x_ji = ji % 10
 	var y_ji = (ji - x_ji)/10
+	
+#	var not_pressed = not ji in checked_boxes
+#	var same_line_or_column = abs(x_ji-3) and abs(y_ji-3)
+#	var on_diagonal = abs(Vector2(x_ji-2,y_ji-2))
+#	return not_pressed and (same_line_or_column or on_diagonal)
 	
 			# DIAGONALES
 	if ji not in checked_boxes :
@@ -64,7 +69,7 @@ func can_press_on_j_after_pressing_on_i(i, ji):
 			return ji 
 		if x_ji == x_i + 2 and y_ji == y_i + 2 :
 			return ji
-		
+
 			#HORIZONTALES
 	if ji not in checked_boxes :
 		if x_ji == x_i - 3 and y_ji == y_i :
@@ -77,8 +82,12 @@ func can_press_on_j_after_pressing_on_i(i, ji):
 			return ji
 
 
-
 func _check_whether_game_ended():
-#	if checked_boxes > 1 :
-#		return false
+	if checked_boxes.size() == 100 :
+		game_won()
+
+func game_won() :
+	pass
+	
+func game_lost() :
 	pass
