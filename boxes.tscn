@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b38o5nqddconh"]
+[gd_scene load_steps=8 format=3 uid="uid://b38o5nqddconh"]
 
 [ext_resource type="Script" path="res://boxes.gd" id="1_bfgda"]
 [ext_resource type="Theme" uid="uid://cm1al6cahi574" path="res://new_theme.tres" id="2_ayeug"]
@@ -7,12 +7,29 @@
 
 [sub_resource type="Theme" id="Theme_idw46"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvxmi"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.568627, 0, 0.239216, 1)
+border_blend = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l3js"]
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.313726, 0.121569, 0.317647, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drhqe"]
+bg_color = Color(0.258824, 0.478431, 0.6, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.823529, 0.0431373, 1)
 border_blend = true
 
 [node name="boxes" type="CanvasLayer"]
@@ -43,10 +60,10 @@ theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 
 [node name="label_score" type="Label" parent="."]
-offset_left = 940.0
-offset_top = 86.0
-offset_right = 1098.0
-offset_bottom = 166.0
+offset_left = 874.0
+offset_top = 90.0
+offset_right = 1155.0
+offset_bottom = 170.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 theme = SubResource("Theme_idw46")
@@ -59,36 +76,47 @@ theme_override_constants/outline_size = 5
 theme_override_constants/shadow_outline_size = 3
 theme_override_constants/line_spacing = 5
 theme_override_font_sizes/font_size = 50
-text = "SCORE"
+text = "BOXES LEFT"
 uppercase = true
 
 [node name="reset_button" type="Button" parent="."]
-offset_left = 940.0
-offset_top = 481.0
-offset_right = 1098.0
-offset_bottom = 538.0
+offset_left = 941.0
+offset_top = 479.0
+offset_right = 1099.0
+offset_bottom = 536.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_1l3js")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nvxmi")
 disabled = true
 text = "RESET"
 
 [node name="start_button" type="Button" parent="."]
-offset_left = 940.0
-offset_top = 410.0
-offset_right = 1098.0
-offset_bottom = 467.0
+offset_left = 941.0
+offset_top = 409.0
+offset_right = 1099.0
+offset_bottom = 466.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_1l3js")
 text = "START
 "
 
+[node name="level_button" type="Button" parent="."]
+visible = false
+offset_left = 941.0
+offset_top = 553.0
+offset_right = 1099.0
+offset_bottom = 610.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_drhqe")
+text = "NEXT LEVEL"
+
 [node name="commentaire_sportif" type="Label" parent="."]
-offset_left = 874.0
-offset_top = 316.0
-offset_right = 1174.0
-offset_bottom = 400.0
+offset_left = 869.0
+offset_top = 315.0
+offset_right = 1169.0
+offset_bottom = 399.0
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.980392, 0.803922, 0, 1)
 theme_override_colors/font_outline_color = Color(0.282353, 0, 0.305882, 1)
@@ -99,13 +127,14 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="credits" type="Label" parent="."]
-offset_left = 1015.0
-offset_top = 693.0
-offset_right = 1284.0
+offset_left = 1078.0
+offset_top = 672.0
+offset_right = 1401.0
 offset_bottom = 718.0
 theme_override_colors/font_color = Color(0.780392, 0.780392, 0.780392, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 14
-text = "made by : SuperJesus & Naji Mammeri"
+text = "made by : SuperJesus
+script doctor : Naji Mammeri"
 autowrap_mode = 3

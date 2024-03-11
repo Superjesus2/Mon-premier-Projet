@@ -7,17 +7,24 @@ var checkable_boxes = 0
 func _ready():
 
 	$label_score.visible = false
+	$level_button.visible = false
+	$level_button.disabled = true
 
 	$start_button.disabled = false
 	$reset_button.disabled = true
 	
 	$start_button.pressed.connect(func(): _onstart())
 	$reset_button.pressed.connect(func(): _reset())
+	$level_button.pressed.connect(func(): _next_level())
+
+func _input(_event):
+	if Input.is_physical_key_pressed(KEY_R):
+		game_won()
 
 func _onstart():
 
 	$label_score.visible = true
-	$checked_boxes_count.text = "0"
+	$checked_boxes_count.text = "100"
 
 	# on nettoie les var pour éviter le stacking du reset
 	boxes.clear()
@@ -54,7 +61,7 @@ func _on_button_pressed(i_button):
 	checked_boxes.append(i_button)
 
 		# afficher le nomlbre de boites cliquées
-	$checked_boxes_count.text = str(checked_boxes.size())
+	$checked_boxes_count.text = str(100 - checked_boxes.size())
 
 		# désactive tous les boutons
 	checkable_boxes = 0
@@ -62,6 +69,7 @@ func _on_button_pressed(i_button):
 		boxes[j].disabled = true
 		for k in checked_boxes:
 			$grid.get_child(k).modulate = Color(0, 1, 0.2)
+			$grid.get_child(i_button).text = str(checked_boxes.size())
 
 		# réactive les boutons appropriés
 		# puis game over si aucun bouton n'est réactivé
@@ -116,6 +124,8 @@ func game_won() :
 	$commentaire_sportif.text = "Yaaay !"
 	$start_button.disabled = true
 	$reset_button.disabled = false
+	$level_button.visible = true
+	$level_button.disabled = false
 
 func game_lost() :
 	
@@ -140,3 +150,7 @@ func game_lost() :
 		$commentaire_sportif.text = "You deserve a hug"
 	if checked_boxes.size() in range(98,100) :
 		$commentaire_sportif.text = "Oh, come on !"
+
+func _next_level() :
+	get_tree().change_scene_to_file("res://boxes2.tscn")
+	
