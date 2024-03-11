@@ -6,6 +6,8 @@ var checkable_boxes = 0
 
 func _ready():
 
+	$label_score.visible = false
+
 	$start_button.disabled = false
 	$reset_button.disabled = true
 	
@@ -14,6 +16,14 @@ func _ready():
 
 func _onstart():
 
+	$label_score.visible = true
+	$checked_boxes_count.text = "0"
+
+	# on nettoie les var pour éviter le stacking du reset
+	boxes.clear()
+	checked_boxes.clear()
+	checkable_boxes = 0
+	
 	$start_button.disabled = true
 	$reset_button.disabled = false
 
@@ -32,7 +42,11 @@ func _onstart():
 	#		button.pressed.connect(declenche_ce_bouton)
 
 func _reset():
-	get_tree().reload_current_scene()
+	for j in range(0,100):
+		boxes[j].free()
+	$commentaire_sportif.text = ""
+	$checked_boxes_count.text = ""
+	_onstart()
 
 func _on_button_pressed(i_button):
 	
@@ -100,15 +114,17 @@ func _check_whether_game_ended():
 
 func game_won() :
 	$commentaire_sportif.text = "Yaaay !"
+	$start_button.disabled = true
+	$reset_button.disabled = false
 
 func game_lost() :
 	
-	$start_button.disabled = false
-	$reset_button.disabled = true
+	$start_button.disabled = true
+	$reset_button.disabled = false
 	
-	if checked_boxes.size() < 25 :
+	if checked_boxes.size() < 30 :
 		$commentaire_sportif.text = "This is quite unusual, you are VERY bad at this"
-	if checked_boxes.size() in range(25,51) :
+	if checked_boxes.size() in range(30,51) :
 		$commentaire_sportif.text = "You lost ! Try harder"
 	if checked_boxes.size() in range(51,66) :
 		$commentaire_sportif.text = "You can do better"
@@ -118,7 +134,9 @@ func game_lost() :
 		$commentaire_sportif.text = "You're not bad, but you're not good either"
 	if checked_boxes.size() in range(86,93) :
 		$commentaire_sportif.text = "Almost there !"
-	if checked_boxes.size() in range(93,98) :
+	if checked_boxes.size() in range(93,96) :
+		$commentaire_sportif.text = "So close..."
+	if checked_boxes.size() in range(96,98) :
 		$commentaire_sportif.text = "You deserve a hug"
 	if checked_boxes.size() in range(98,100) :
 		$commentaire_sportif.text = "Oh, come on !"

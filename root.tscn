@@ -1,12 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://3xnxnmrewoo2"]
+[gd_scene load_steps=2 format=3 uid="uid://3xnxnmrewoo2"]
 
-[ext_resource type="PackedScene" uid="uid://c1owebu52rb22" path="res://flappy.tscn" id="1_aqlwo"]
 [ext_resource type="PackedScene" uid="uid://b38o5nqddconh" path="res://boxes.tscn" id="3_ba4vr"]
 
 [node name="root" type="Node2D"]
 
-[node name="flappy" parent="." instance=ExtResource("1_aqlwo")]
-
 [node name="boxes" parent="." instance=ExtResource("3_ba4vr")]
-
-[node name="boxer" type="Node2D" parent="boxes"]
