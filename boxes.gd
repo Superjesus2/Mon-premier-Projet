@@ -18,8 +18,9 @@ func _ready():
 	$level_button.pressed.connect(func(): _next_level())
 
 func _input(_event):
-	if Input.is_physical_key_pressed(KEY_R):
+	if Input.is_physical_key_pressed(KEY_F):
 		game_won()
+		print("test")
 
 func _onstart():
 
@@ -32,7 +33,8 @@ func _onstart():
 	checkable_boxes = 0
 	
 	$start_button.disabled = true
-	$reset_button.disabled = false
+	if $reset_button.disabled == true :
+		$reset_button.disabled = false
 
 	for ii in range(0,100):
 		var button = Button.new()
@@ -49,8 +51,9 @@ func _onstart():
 	#		button.pressed.connect(declenche_ce_bouton)
 
 func _reset():
-	for j in range(0,100):
-		boxes[j].free()
+	if boxes.size() > 0 :
+		for j in range(0,100):
+			boxes[j].free()
 	$commentaire_sportif.text = ""
 	$checked_boxes_count.text = ""
 	_onstart()

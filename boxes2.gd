@@ -18,7 +18,7 @@ func _ready():
 	$level_button.pressed.connect(func(): _next_level())
 
 func _input(_event):
-	if Input.is_physical_key_pressed(KEY_R):
+	if Input.is_physical_key_pressed(KEY_F):
 		game_won()
 
 func _onstart():
@@ -49,8 +49,9 @@ func _onstart():
 	#		button.pressed.connect(declenche_ce_bouton)
 
 func _reset():
-	for j in range(0,100):
-		boxes[j].free()
+	if boxes.size() > 0 :
+		for j in range(0,100):
+			boxes[j].free()
 	$commentaire_sportif.text = ""
 	$checked_boxes_count.text = ""
 	_onstart()
@@ -91,28 +92,6 @@ func can_press_on_j_after_pressing_on_i(i, ji):
 	var on_cheval_1 = abs(x_i-x_ji) == 1 and abs(y_i-y_ji) == 2
 	var on_cheval_2 = abs(x_i-x_ji) == 2 and abs(y_i-y_ji) == 1
 	return not_pressed and (on_cheval_2 or on_cheval_1)
-	# ^ est une factorisation de ce qui suit :
-	#	
-	#	if ji not in checked_boxes :
-	#		if x_ji == x_i - 2 and y_ji == y_i - 2 :
-	#			return ji 
-	#		if x_ji == x_i + 2 and y_ji == y_i - 2 :
-	#			return ji 
-	#		if x_ji == x_i - 2 and y_ji == y_i + 2 :
-	#			return ji 
-	#		if x_ji == x_i + 2 and y_ji == y_i + 2 :
-	#			return ji
-	#
-	#			#HORIZONTALES
-	#	if ji not in checked_boxes :
-	#		if x_ji == x_i - 3 and y_ji == y_i :
-	#			return ji
-	#		if x_ji == x_i + 3 and y_ji == y_i :
-	#			return ji
-	#		if y_ji == y_i - 3 and x_ji == x_i :
-	#			return ji
-	#		if y_ji == y_i + 3 and x_ji == x_i :
-	#			return ji
 
 func _check_whether_game_ended():
 	if checked_boxes.size() == 100 :
@@ -152,5 +131,5 @@ func game_lost() :
 		$commentaire_sportif.text = "Oh, come on !"
 
 func _next_level() :
-	get_tree().change_scene_to_file("res://boxes2.tscn")
+	get_tree().change_scene_to_file("res://boxes3.tscn")
 	

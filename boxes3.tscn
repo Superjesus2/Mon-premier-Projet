@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs186odkag84s"]
+
+[ext_resource type="Script" path="res://boxes3.gd" id="1_bdqdh"]
+[ext_resource type="Theme" uid="uid://dgrvm5s05uc7n" path="res://third_theme.tres" id="2_aav8l"]
+[ext_resource type="Theme" uid="uid://b4qbql86ysya" path="res://second_theme.tres" id="2_yj7rw"]
+
+[sub_resource type="Theme" id="Theme_y6tds"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvxmi"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.419608, 0.611765, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l3js"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.313726, 0.121569, 0.317647, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drhqe"]
+bg_color = Color(0, 0.537255, 0.298039, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.490196, 0.831373, 1, 1)
+border_blend = true
+
+[node name="boxes3" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_bdqdh")
+
+[node name="grid" type="GridContainer" parent="."]
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 784.0
+offset_bottom = 715.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_aav8l")
+theme_override_constants/h_separation = 5
+columns = 10
+
+[node name="checked_boxes_count" type="Label" parent="."]
+offset_left = 1000.0
+offset_top = 169.0
+offset_right = 1040.0
+offset_bottom = 209.0
+theme = SubResource("Theme_y6tds")
+theme_override_colors/font_color = Color(0, 0.729412, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="label_score" type="Label" parent="."]
+offset_left = 874.0
+offset_top = 90.0
+offset_right = 1155.0
+offset_bottom = 170.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("2_yj7rw")
+theme_override_colors/font_color = Color(0.541176, 0.823529, 0.819608, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.054902, 0.4, 0.858824)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 3
+theme_override_constants/line_spacing = 5
+theme_override_font_sizes/font_size = 50
+text = "BOXES LEFT"
+uppercase = true
+
+[node name="reset_button" type="Button" parent="."]
+offset_left = 941.0
+offset_top = 479.0
+offset_right = 1099.0
+offset_bottom = 536.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_nvxmi")
+disabled = true
+text = "RESET"
+
+[node name="start_button" type="Button" parent="."]
+offset_left = 941.0
+offset_top = 409.0
+offset_right = 1099.0
+offset_bottom = 466.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_1l3js")
+text = "START
+"
+
+[node name="level_button" type="Button" parent="."]
+visible = false
+offset_left = 941.0
+offset_top = 553.0
+offset_right = 1099.0
+offset_bottom = 610.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_drhqe")
+text = "NEXT LEVEL"
+
+[node name="commentaire_sportif" type="Label" parent="."]
+offset_left = 868.0
+offset_top = 315.0
+offset_right = 1168.0
+offset_bottom = 399.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.980392, 0.803922, 0, 1)
+theme_override_colors/font_outline_color = Color(0.282353, 0, 0.305882, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="credits" type="Label" parent="."]
+offset_left = 1078.0
+offset_top = 672.0
+offset_right = 1401.0
+offset_bottom = 718.0
+theme_override_colors/font_color = Color(0.780392, 0.780392, 0.780392, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 14
+text = "made by : SuperJesus
+script doctor : Naji Mammeri"
+autowrap_mode = 3
